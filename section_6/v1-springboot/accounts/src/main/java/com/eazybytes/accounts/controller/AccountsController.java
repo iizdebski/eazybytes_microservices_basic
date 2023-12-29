@@ -11,14 +11,18 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 
 @Tag(
         name = "CRUD REST APIs for Accounts in EazyBank",
@@ -30,7 +34,8 @@ import org.springframework.web.bind.annotation.*;
 public class AccountsController {
 
     private final IAccountsService iAccountsService;
-    public AccountsController(IAccountsService iAccountsService){
+
+    public AccountsController(IAccountsService iAccountsService) {
         this.iAccountsService = iAccountsService;
     }
 
@@ -163,9 +168,9 @@ public class AccountsController {
         }
     }
 
-    @Operation(
-            summary = "Get Build Information",
-            description = "Get Build information tha is deployed into accounts microservice"
+  @Operation(
+            summary = "Get Build information",
+            description = "Get Build information that is deployed into accounts microservice"
     )
     @ApiResponses({
             @ApiResponse(
@@ -183,7 +188,7 @@ public class AccountsController {
     )
 
     @GetMapping("/build-info")
-    public ResponseEntity<String> getBuildInfo(){
+    public ResponseEntity<String> getBuildInfo() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(buildVersion);
