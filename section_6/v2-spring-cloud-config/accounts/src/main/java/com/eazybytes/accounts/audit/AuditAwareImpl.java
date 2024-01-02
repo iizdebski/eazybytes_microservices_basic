@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-// commentary to check git remote
 @Component("auditAwareImpl")
 public class AuditAwareImpl implements AuditorAware<String> {
 
