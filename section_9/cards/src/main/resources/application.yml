@@ -20,14 +20,23 @@ spring:
     show-sql: true
   config:
     import: "optional:configserver:http://localhost:8071/"
+
 management:
   endpoints:
     web:
       exposure:
         include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
   endpoint:
     shutdown:
       enabled: true
+    health:
+      probes:
+        enabled: true
   info:
     env:
       enabled: true
@@ -53,5 +62,6 @@ info:
 
 logging:
   level:
-    eazybytes:
-      cards: DEBUG
+    com:
+      eazybytes:
+        cards: DEBUG
